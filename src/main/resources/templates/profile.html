@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout/online">
+
+<head>
+	<title>Profile</title>
+</head>
+
+<body>
+	<div th:insert="fragments/user_navbar.html"> </div>
+	<br>
+	<br>
+	<br>
+	<div class="container">
+	</div>
+	<div class="container">
+		<h4> Configure Posts</h4>
+		<table class="table table-responsive-md">
+			<thead class="thead-dark">
+				<tr>
+					<th>Subject</th>
+					<th>Edit</th>
+					<th>Delete</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="post: ${user.posts}">
+					<td th:text="${post.subject}"></td>
+					<td>
+						<button type="button" class="btn btn-outline-primary btn-sm m-0 waves-effect"
+							th:attr='onclick=|window.location.href = "editPost?postId=${post.postId}";|'>Edit</button>
+					</td>
+					<td>
+						<button type="button" class="btn btn-outline-primary btn-sm m-0 waves-effect"
+							th:attr='onclick=|window.location.href = "deletepost?postId=${post.postId}";|'>Delete</button>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	</div>
+	</div>
+	</div>
+	</div>
+	</div>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<div th:insert="fragments/footer.html"> </div>
+</body>
+
+</html>

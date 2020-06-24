@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout/online">
+
+<head>
+	<title>Add Topic</title>
+</head>
+
+<body>
+	<div th:insert="fragments/user_navbar.html"> </div>
+	<main layout:fragment="content">
+	<article class="container" style="padding: 3% 0 2%;">
+
+	<div class="outside container">
+		<div class="row">
+			<div class="col-lg-10 col-xl-9">
+				<div class="flex-row my-5">
+					<div class="main-body">
+						<h5 class="">Discussion</h5>
+						<br>
+						<form class="form-signin" th:action="@{/addDiscussion}" th:object="${post}" method="post">
+							<div class="form-label-group">
+								<input type="text" th:field="*{subject}" id="inputSubject" class="form-control"
+									placeholder="Subject" required autofocus>
+								<label for="inputSubject">Subject</label>
+							</div>
+
+							<div class="form-label-group">
+								<textarea type="text" th:field="*{description}" id="inputDescription"
+									class="form-control textareaconfigur" placeholder="Discription"
+									style="height:150px;" required></textarea>
+							</div>
+
+							<div class="form-label-group">
+								<input type="text" th:field="*{tags}" id="inputTags" class="form-control"
+									placeholder="Tags" required>
+								<label for="inputTags">Tags</label>
+							</div>
+							<button class="btn-lg btn-primary btn-block text-uppercase" type="submit">Post</button>
+							<br>
+							<div class="alert alert-danger alert-dismissible col-sm-12"
+								th:if="${(bindingResult != null && bindingResult.getAllErrors() != null)}">
+								<ul th:each="data : ${bindingResult.getAllErrors()}">
+									<li th:text="${data.getDefaultMessage()}"></li>
+								</ul>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+				</article>	
+</main>
+	<div th:insert="fragments/footer.html"> </div>
+
+</body>
+
+</html>

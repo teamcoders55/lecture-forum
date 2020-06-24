@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout/offline">
+
+<head>
+	<meta charset="utf-8" />
+	<title>Register</title>
+</head>
+
+<body>
+	<div th:insert="fragments/no_user_navbar.html"> </div>
+	<main layout:fragment="content">
+		<article class="container" style="padding-top: 3%;">
+			<header class="row">
+				<div class="col s12">
+					<h3 class="center">register</h3>
+					<h5 class="center">Sign up</h5>
+				</div>
+			</header>
+			<section>
+				<!-- <form th:action="@{/register}" method="post"> -->
+				<form class="form-signin" th:action="@{/signup}" th:object="${user}" method="post">
+					<div class="row">
+						<div class="col s12">
+							<label> username:
+								<!-- <input type="text" name="username" minlength="3" maxlength="10" data-length="10"
+									required="required" /> -->
+								<input type="text" th:field="*{name}" id="inputName" required autofocus>
+							</label>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col s12">
+							<label> email:
+								<input type="email" th:field="*{email}" id="inputEmail" required>
+							</label>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col s12">
+							<label> password:
+								<!-- <input type="password" name="password" minlength="6" maxlength="10" data-length="10"
+									required="required" /> -->
+								<input type="password" th:field="*{password}" id="inputPassword" required>
+							</label>
+						</div>
+					</div>
+					
+					<div class="row">
+						<div class="col s12 center">
+							<p class="center">In case of the success, you will be redirected to login page</p>
+							<p class="center">Otherwise change your username</p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col s12 center">
+							<button class="btn waves-effect waves-light btn-large" type="submit" name="register">register</button>
+						</div>
+					</div>
+				</form>
+			</section>
+			</article>
+			</main>
+
+
+
+	<!-- <div class="login-form">
+		<div class="row">
+			<div class="col-lg-10 col-xl-9 mx-auto">
+				<div class="card card-signin flex-row my-5">
+					<div class="card-img-left d-none d-md-flex">
+					</div>
+					<div class="form-group">
+						<h5 class="card-title text-center">Register</h5>
+						<form class="form-signin" th:action="@{/signup}" th:object="${user}" method="post">
+							<div class="form-label-group">
+								<label for="inputName">Name</label>
+								<input type="text" th:field="*{name}" id="inputName" class="form-control"
+									placeholder="Name" required autofocus>
+
+							</div>
+
+							<div class="form-group">
+								<label for="inputEmail">Email address</label>
+								<input type="email" th:field="*{email}" id="inputEmail" class="form-control"
+									placeholder="Email address" required>
+
+							</div>
+
+
+							<div class="form-group">
+								<label for="inputPassword">Password</label>
+								<input type="password" th:field="*{password}" id="inputPassword" class="form-control"
+									placeholder="Password" required>
+
+							</div> -->
+
+							<!-- <div class="form-label-group">
+	                <input type="password" id="inputConfirmPassword" class="form-control" placeholder="Password" required>
+	                <label for="inputConfirmPassword">Confirm password</label>
+	              </div> -->
+
+							<!-- <button class="btn btn-lg btn-primary btn-block text-uppercase"
+								type="submit">Register</button> -->
+							<!-- <div> -->
+								<!-- <br> -->
+								<span th:utext="${successMessage}"></span>
+							</div>
+							<div class="alert alert-danger alert-dismissible col-sm-12"
+								th:if="${(bindingResult != null && bindingResult.getAllErrors() != null)}">
+								<ul th:each="data : ${bindingResult.getAllErrors()}">
+									<li th:text="${data.getObjectName() + ' :: ' + data.getDefaultMessage()}"></li>
+								</ul>
+							</div>
+							<!-- <a class="d-block text-center mt-2 small" href="signin">Sign In</a> -->
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div th:insert="fragments/footer.html"> </div>
+</body>
+
+</html>

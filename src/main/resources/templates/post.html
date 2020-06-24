@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="../css/add_discussion.css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Slab&display=swap" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+  <title>discussions
+  </title>
+  <script type="text/javascript">
+    document.getElementById("newCommentPostId").value = "8";
+  </script>
+  <style type="text/css">
+    .container {
+      width: 1000px;
+    }
+
+    .btn {
+      padding: 0%;
+      font-size: xx-small;
+    }
+  </style>
+
+
+</head>
+
+<body>
+  <div th:insert="fragments/user_navbar.html"> </div>
+  <br>
+  <br>
+  <br>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-10 col-xl-9 mx-auto">
+        <div class="flex-row my-5" th:object="${discussion}">
+          <div class="card-body">
+            <p align="left" th:text="|${discussion.user.Name}">Name </p>
+            <p align="left" th:text="${discussion.subject}">Subject</p>
+            <br>
+            <form class="form-signin" th:action="|@{/post/}${discussion.postId}|" th:object="${newComment}"
+              method="post">
+              <div class="form-label-group">
+                <input type="text" th:field="${newComment.commentText}" th:id="|inputComment${discussion.postId}|"
+                  th:value="${discussion.postId}" class="form-control" placeholder="Comment" required>
+                <label th:for="|inputComment${discussion.postId}|">Comment</label>
+              </div>
+              <button class="btn-lg btn-primary btn-block text-uppercase" th:id="|commentButton${discussion.postId}|"
+                type="submit">Comment</button>
+              <br>
+            </form>
+            <br>
+            <h6>Comments :</h6>
+            <div th:insert="comment_fragments/comment.html"> </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

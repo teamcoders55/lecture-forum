@@ -1,0 +1,9 @@
+<div class="replyComment" th:each="comment: ${comment.replyComments}">
+	<div class="row">
+		<h6 th:text="|${comment.user.name} : ${comment.createdOn}|">Name : </h6>
+	</div>
+	<p th:text="${comment.commentText}">Reply Comment</p>
+	<p  align="right" ><button type="button" class="text-uppercase" data-toggle="modal" th:data-target="|#myModal${comment.commentId}|">Reply</button></p>
+	<div th:insert="comment_fragments/reply_comment.html"> </div>
+	<div th:insert="comment_fragments/comment_modal.html"> </div>
+</div>

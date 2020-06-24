@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout/online">
+
+<head>
+	<title>Profile</title>
+</head>
+	<div th:insert="fragments/user_navbar.html"> </div>
+	<main layout:fragment="content">
+	<article class="container" style="padding: 3% 0 2%;">
+
+	  <div class="container">
+	    <div class="row">
+	      <div class="col-lg-10 col-xl-9 mx-auto">
+	        <div class="card card-signin flex-row my-5">
+	          <div>
+	            <h5 class="card-title text-center">Discussion</h5>
+	            <form class="form-signin" th:action="@{/editPost}" method="post">
+	              <div>
+	                <input type="text" th:field="${post.subject}" id="inputSubject" class="form-control" th:value="*{subject}" required autofocus>
+	                <label for="inputSubject">Subject</label>
+	              </div>
+	
+	              <div>
+	                <textarea type="text" th:field="${post.description}" id="inputDescription" class="form-control textareaconfigur" th:value="*{subject}" style="height:150px;" required></textarea>
+	              </div>
+	              
+	              <div>
+	                <input type="text" th:field="${post.tags}" id="inputTags" class="form-control" th:value="*{subject}" required>
+	                <label for="inputTags">Tags</label>
+	              </div>
+	              <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Post</button>
+	              <br>
+	              <div class="alert alert-danger alert-dismissible col-sm-12"
+					th:if="${(bindingResult != null && bindingResult.getAllErrors() != null)}">
+					<ul th:each="data : ${bindingResult.getAllErrors()}">
+						<li th:text="${data.getDefaultMessage()}"></li>
+					</ul>
+				</div>
+	            </form>
+	          </div>
+	        </div>
+	      </div>
+	    </div>
+	  </div>
+	</article>
+	</main>
+	<div th:insert="fragments/footer.html"> </div>
+  </body>
+</html>

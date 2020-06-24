@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout/online">
+<head>
+	<title>Topics | JF</title>
+</head>
+
+<body>
+	<main layout:fragment="content">
+		<div th:insert="fragments/user_navbar.html"> </div>
+			<article class="container" style="padding: 3% 0 2%;">
+				<section class="row">
+					<div class="col s12">
+						<table class="striped bordered centered">
+							<thead>
+								<tr>
+									<th>Author</th>
+									<th>When created room</th>
+									<th>Title</th>
+									<th>Number of comments</th>
+								</tr>
+							</thead>
+							<tbody>
+								<th:block th:each="discussion: ${discussions.content}">
+									<tr>
+										<td>
+										<a th:href="|userProfile?userId=${discussion.user.userId}|" th:text="${discussion.user.Name}">
+											Name
+										</a>
+										</td>
+										<td>
+										<a th:href="|userProfile?userId=${discussion.user.userId}|" th:text="${discussion.createdOn}">
+											Date
+										</a>
+										</td>
+										<td>
+										<a th:href="|post/${discussion.postId}|" th:text="${discussion.subject}">
+											Subject
+										</a>
+										</td>
+										<td>
+										<a th:text="|Comment: ${#lists.size(discussion.comments)}|" th:href="|post/${discussion.postId}|">
+											Comments
+										</a>
+										</td>
+										</tr>
+								</th:block>
+							</tbody>
+						</table>
+					</div>
+				</section>
+			</article>
+		<div th:insert="fragments/footer.html"> </div>
+	</main>
+  </body>
+</html>

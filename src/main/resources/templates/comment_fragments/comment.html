@@ -1,0 +1,107 @@
+<!-- <!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout/online">
+
+<head>
+	<title>Answers | JF</title>
+</head>
+
+<body>
+	<main layout:fragment="content">
+		<article class="container" style="padding: 3% 0 2%;">
+			<header class="row">
+				<div class="col s12">
+					<blockquote class="flow-text left" th:text="|Answers:|">Header</blockquote>
+				</div>
+			</header>
+			<section class="row">
+				<div class="col s12">
+					<table class="striped bordered centered">
+						<thead>
+							<tr>
+								<th>Topic</th>
+								<th>Content</th>
+								<th>Enter</th>
+							</tr>
+						</thead>
+						<tbody>
+							<th:block>
+								<tr>
+									<td th:text="${topicDao.findTopicById(answer.getIdTopic()).getTitle()}">Topic's
+										title</td>
+									<td th:text="${answer.displayBeginning()}">Topic's title</td>
+									<td>
+										<a th:href="@{'/topic/' + ${topicDao.findTopicById(answer.getIdTopic()).getId()}}"
+											class="btn btn-floating pulse">
+											<i class="material-icons">arrow_forward</i>
+										</a>
+									</td>
+								</tr>
+							</th:block>
+						</tbody>
+					</table>
+				</div>
+			</section>
+			<section class="row">
+				<div class="col s12">
+					<div th:if="${answers.size() == 0}">
+						<p class="flow-text center">No answers</p>
+					</div>
+				</div>
+			</section>
+		</article>
+	</main>
+</body>
+
+</html> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout/online">
+
+<head>
+	<title>Add Topic</title>
+</head>
+
+<body>
+	<header class="row">
+		<div class="col s12">
+			<blockquote class="flow-text left" th:text="|Comment: ${#lists.size(discussion.comments)}|" th:href="|post/${discussion.postId}|">Header</blockquote>
+					</div>
+				</header>
+	<main layout:fragment="content">
+		<article class="container" style="padding: 3% 0 2%;">
+			
+
+<div class="flex-row my-5 mainComment" th:each="comment: ${discussion.comments}">
+	<div class="card-body">
+		<div class="row">
+			<h6 th:text="|${comment.user.name} : ${comment.createdOn}|">Name : </h6>
+		</div>
+		<p th:text="${comment.commentText}">comment</p>
+		<p  align="right" >
+			<button type="button" class="comment-btn text-uppercase" data-toggle="modal" th:data-target="|#myModal${comment.commentId}|">Reply</button>
+		</p>
+		<div th:insert="comment_fragments/reply_comment.html"> </div>
+	</div>
+	<div th:insert="comment_fragments/comment_modal.html"> </div>
+</div>
+		</article>
+	</main>
+<!-- <div th:insert="fragments/footer.html"> </div> -->
+</body>
+</html>
